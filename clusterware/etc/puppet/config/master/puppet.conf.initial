@@ -1,0 +1,29 @@
+[main]
+    vardir = /var/lib/puppet
+    logdir = /var/log/puppet
+    rundir = /var/run/puppet
+    ssldir = $vardir/ssl
+    privatekeydir = $ssldir/private_keys { group = service }
+    hostprivkey = $privatekeydir/$certname.pem { mode = 640 }
+    #autosign       = /opt/alces/etc/puppet/config/autosign.conf { mode = 664 }
+    hiera_config = /opt/alces/etc/puppet/config/hiera.yml
+    allow_duplicate_certs = true
+    manifestdir = /opt/alces/etc/puppet/manifests/
+    pluginsync  = true
+    dns_alt_names = service,localhost
+[agent]
+    classfile = $vardir/classes.txt
+    localconfig = $vardir/localconfig
+    report      = true
+    pluginsync  = true
+    #masterport  = 8141
+    environment = production
+    certname    = service
+    server      = localhost
+    listen      = false
+[master]
+    reports     = store
+    certname	= service
+    ca = true
+    environmentpath = /opt/alces/etc/puppet/environments/
+    basemodulepath  = /opt/alces/etc/puppet/modules/common/

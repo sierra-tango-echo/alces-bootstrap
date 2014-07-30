@@ -1,0 +1,9 @@
+#!/bin/bash
+cd `dirname $0`
+git clone https://github.com/ste78/puppet-alcesconfigs.git hieradata
+if [ -d hieradata/.git ]; then
+  mv `basename $0` `basename $0`.done
+  exit 0
+else
+  exit 1
+fi

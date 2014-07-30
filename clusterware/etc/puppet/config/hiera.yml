@@ -1,0 +1,14 @@
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: /var/lib/alces/clusterware/etc/puppet/hieradata
+:hierarchy:
+  - common
+  - %{::clientcert}
+  - %{::alces_hostname}
+  - %{::alces_machine}
+  - %{::alces_role}
+  - %{::environment}
+  - network
+  - cluster

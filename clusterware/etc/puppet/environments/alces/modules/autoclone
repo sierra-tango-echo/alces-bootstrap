@@ -1,0 +1,27 @@
+#!/bin/bash
+
+check () {
+  if ! [ -d $1/.git ]; then
+    echo "Failed to clone $1 module" >&2
+    exit 1
+  fi
+}
+
+cd `dirname $0`
+
+git clone https://github.com/ste78/puppet-alcesbase.git alcesbase
+check alcesbase || exit 1
+git clone https://github.com/ste78/puppet-alceshpc.git alceshpc
+check alceshpc || exit 1
+git clone https://github.com/ste78/puppet-alcesmonitoring.git alcesmonitoring
+check alcesmonitoring || exit 1
+git clone https://github.com/ste78/puppet-alcesnetwork.git alcesnetwork
+check alcesnetwork || exit 1
+git clone https://github.com/ste78/puppet-alcesservices.git alcesservices
+check alcesservices || exit 1
+git clone https://github.com/ste78/puppetlabs-stdlib.git --branch 3.2.x stdlib
+check stdlib || exit 1
+git clone https://github.com/ste78/puppet-multitemplate.git puppet-multitemplate
+check puppet-multitemplate || exit 1
+
+mv `basename $0` `basename $0`.done
